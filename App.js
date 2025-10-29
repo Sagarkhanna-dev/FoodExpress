@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-DOM/client";
+import ReactDOM from "react-dom/client";
 import Restaurant from "./src/components/Restaurant";
 import { BrowserRouter , Route , Routes  } from "react-router";
 import Home from "./src/components/Home";
