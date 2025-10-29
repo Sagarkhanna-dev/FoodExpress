@@ -4,12 +4,11 @@ import axios from 'axios';
 
 const app = express();
 
-// ✅ DEPLOYMENT READY: Configure CORS for both local and production
+// ✅ UPDATE CORS WITH YOUR ACTUAL NETLIFY URL
 app.use(cors({
     origin: [
-        'http://localhost:1234',           // Local development
-        'https://your-frontend-domain.netlify.app', // Your Netlify domain
-        'https://your-app-name.netlify.app'         // Generic Netlify pattern
+        'http://localhost:1234',
+        'https://foodexpress-online.netlify.app/'  // NETLIFY URL
     ],
     credentials: true
 }));
