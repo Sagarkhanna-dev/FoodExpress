@@ -1,72 +1,194 @@
-import React, { useState } from "react"
-import {FiMenu ,FiX} from 'react-icons/fi'
+import React, { useState } from "react";
 import { MdEmail } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { IoLockClosed } from "react-icons/io5";
 
 // Relationship of components
 // (Header.js , NextHead.js) -> Account.js
-export default function Account(){
-    const [action , setAction] = useState("Sign Up");
-    return(
-        <>
-        <div className="bg-gray-400 relative h-screen">
-            <div className="w-3/5 h-140 md:w-2/5 mx-auto py-5 px-5 overflow-hidden absolute left-[30%] top-[7%]
-            bg-white rounded-xl hover:shadow-2xl hover:shadow-black hover:scale-105 duration-300">
 
-                {/* Title div */}
-                <div className="flex justify-center flex-col gap-2 items-center  container">
-                    <div className="text-3xl text-orange-400  rounded-xl font-medium">{action}</div>
-                    <div className="w-18 h-1.5 bg-orange-400 rounded-2xl"></div>
+export default function Account() {
+    const [action, setAction] = useState("Sign Up");
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        password: ""
+    });
+
+    const handleInputChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Form submitted:", formData);
+        // Add your form submission logic here
+    };
+
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center p-4">
+            {/* Main Container */}
+            <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden">
+                
+                {/* Header with Tabs */}
+                <div className="flex border-b border-gray-200">
+                    <button
+                        className={`flex-1 py-4 font-semibold text-lg transition-all duration-300 ${
+                            action === 'Sign Up' 
+                            ? 'bg-orange-500 text-white' 
+                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        }`}
+                        onClick={() => setAction('Sign Up')}
+                    >
+                        Sign Up
+                    </button>
+                    <button
+                        className={`flex-1 py-4 font-semibold text-lg transition-all duration-300 ${
+                            action === 'LogIn' 
+                            ? 'bg-orange-500 text-white' 
+                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        }`}
+                        onClick={() => setAction('LogIn')}
+                    >
+                        Login
+                    </button>
                 </div>
 
-                {/* Input fields div */}
-                <div className="grid place-content-center container ">
-
-                {/* User section */}
-                    {
-                        (action === 'LogIn') ? <div></div> : <div className="mt-10 mb-2 flex pl-4 gap-3 items-center max-w-100  h-20 bg-gray-300 rounded-lg">
-                        <div className=""><FaUser size={24} className="text-gray-500"/></div>
-                        <input placeholder="Name" type="text"className="w-80 h-12 border-none outline-none text-lg container "></input>
-                    </div>
-                    }
-                    
-                    
-                {/* Email div */}
-                    <div className="mt-2 mb-2 flex gap-3 items-center w-100 h-20 bg-gray-300 pl-4 rounded-lg">
-                        <div className=""><MdEmail size={24} className="text-gray-500"/></div>
-                        <input placeholder="Email Id" type="email"className="w-80 h-12 border-none outline-none text-lg"></input>
+                {/* Form Container */}
+                <div className="p-6 md:p-8">
+                    {/* Title */}
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl font-bold text-gray-800">
+                            {action === 'Sign Up' ? 'Create Account' : 'Welcome Back'}
+                        </h2>
+                        <p className="text-gray-600 mt-2">
+                            {action === 'Sign Up' 
+                                ? 'Join us today!' 
+                                : 'Sign in to your account'
+                            }
+                        </p>
                     </div>
 
-                {/* Password div */}
-                    <div className="mt-2 mb-2 flex gap-3 items-center w-100 h-20 bg-gray-300 pl-4 rounded-lg">
-                        <div className=" "><IoLockClosed size={24} className="text-gray-500"/></div>
-                        <input placeholder="Password" type="password"className="w-80 h-12 border-none outline-none text-lg"></input>
-                    </div>
+                    {/* Form */}
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        {/* Name Field - Only for Sign Up */}
+                        {action === 'Sign Up' && (
+                            <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <FaUser className="text-gray-400 text-lg" />
+                                </div>
+                                <input
+                                    name="name"
+                                    type="text"
+                                    placeholder="Full Name"
+                                    value={formData.name}
+                                    onChange={handleInputChange}
+                                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all duration-300"
+                                    required
+                                />
+                            </div>
+                        )}
 
-                {/* Forget password section */}
-                    {
-                        (action === 'Sign Up') ? <div></div> : <div>
-                        <div className="text-gray-800">Forget Password ? <span className="text-blue-600
-                        cursor-pointer">Click Here</span></div>
+                        {/* Email Field */}
+                        <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <MdEmail className="text-gray-400 text-lg" />
+                            </div>
+                            <input
+                                name="email"
+                                type="email"
+                                placeholder="Email Address"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all duration-300"
+                                required
+                            />
                         </div>
-                    }
-                    
 
-                {/* Login / SignUp div */}
-                    <div className=" flex justify-center gap-10 mt-12 mb-5 ">
-                        <button type="submit" className={`w-24 md:w-30 h-12 md:h-14 text-center pt-2 md:pt-1
-                        md:pb-1 font-semibold text-xl rounded-2xl hover:scale-110 duration-300 cursor-pointer
-                            ${(action === 'LogIn') ? ' bg-gray-300 text-gray-500' : 'bg-orange-400 text-white'}`} onClick={()=> setAction('Sign Up')} >Sign Up </button>
+                        {/* Password Field */}
+                        <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <IoLockClosed className="text-gray-400 text-lg" />
+                            </div>
+                            <input
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                value={formData.password}
+                                onChange={handleInputChange}
+                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all duration-300"
+                                required
+                            />
+                        </div>
 
-                        <button type="submit" className={`w-24 h-12 md:w-30 md:h-14   text-center pt-2 md:pt-1
-                        md:pb-1 font-semibold text-xl rounded-2xl hover:scale-110 duration-300 cursor-pointer
-                            ${(action === 'Sign Up') ? 'bg-gray-300 text-gray-500' : 'bg-orange-400 text-white'}`}
-                            onClick={()=> setAction('LogIn')}>LogIn </button>
+                        {/* Forgot Password - Only for Login */}
+                        {action === 'LogIn' && (
+                            <div className="text-right">
+                                <button 
+                                    type="button"
+                                    className="text-orange-500 hover:text-orange-600 text-sm font-medium transition-colors duration-300"
+                                >
+                                    Forgot Password?
+                                </button>
+                            </div>
+                        )}
+
+                        {/* Submit Button */}
+                        <button
+                            type="submit"
+                            className="w-full bg-orange-500 text-white py-3 rounded-lg font-semibold text-lg hover:bg-orange-600 transform hover:scale-105 transition-all duration-300 shadow-lg"
+                        >
+                            {action === 'Sign Up' ? 'Create Account' : 'Sign In'}
+                        </button>
+                    </form>
+
+                    {/* Alternative Sign In */}
+                    <div className="mt-8 text-center">
+                        <div className="relative">
+                            <div className="absolute inset-0 flex items-center">
+                                <div className="w-full border-t border-gray-300"></div>
+                            </div>
+                            <div className="relative flex justify-center text-sm">
+                                <span className="px-2 bg-white text-gray-500">Or continue with</span>
+                            </div>
+                        </div>
+                        
+                        <div className="mt-4 grid grid-cols-2 gap-3">
+                            <button
+                                type="button"
+                                className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors duration-300"
+                            >
+                                Google
+                            </button>
+                            <button
+                                type="button"
+                                className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors duration-300"
+                            >
+                                Facebook
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Footer */}
+                    <div className="mt-6 text-center">
+                        <p className="text-gray-600 text-sm">
+                            {action === 'Sign Up' 
+                                ? 'Already have an account? ' 
+                                : "Don't have an account? "
+                            }
+                            <button
+                                type="button"
+                                onClick={() => setAction(action === 'Sign Up' ? 'LogIn' : 'Sign Up')}
+                                className="text-orange-500 hover:text-orange-600 font-medium transition-colors duration-300"
+                            >
+                                {action === 'Sign Up' ? 'Sign In' : 'Sign Up'}
+                            </button>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-        </>
-    )
+    );
 }
