@@ -6,6 +6,7 @@ import Shimmer from "./Shimmer";
 import { imageGridCards } from "../../util/FoodData"
 import Foodcart from "./Foodcart"
 import Footer from "./Footer";
+import { API_BASE_URL } from "../config";
 
 // Relationship of components
 // Restaurant.js -> (Shimmer.js , Foodcart.js , Footer.js)
@@ -26,7 +27,7 @@ export default function Restaurant() {
                 
                 // For development - use local backend
                 // http://localhost:3001/api/restaurants
-                const backendUrl = 'http://localhost:3001/api/restaurants';
+                const backendUrl = (`${API_BASE_URL}/api/restaurants`);
                 
                 console.log('🔄 Fetching from backend...');
                 const response = await fetch(backendUrl);
