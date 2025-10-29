@@ -8,7 +8,7 @@ const app = express();
 app.use(cors({
     origin: [
         'http://localhost:1234',
-        'https://foodexpress-online.netlify.app/'  // NETLIFY URL
+        'https://foodexpress-online.netlify.app'  // NETLIFY URL
     ],
     credentials: true
 }));
