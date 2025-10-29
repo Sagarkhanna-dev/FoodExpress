@@ -6,6 +6,10 @@ A modern, full-stack food delivery application built with React, Redux, and Node
 ![Redux](https://img.shields.io/badge/Redux-Toolkit-purple.svg)
 ![Node.js](https://img.shields.io/badge/Node.js-Express-green.svg)
 
+## 🌐 Live Demo
+- **Frontend:** https://foodexpress-online.netlify.app
+- **Backend API:** https://foodexpress-backend-bleh.onrender.com
+
 ## 🚀 Features
 
 ### Frontend Features
@@ -21,7 +25,7 @@ A modern, full-stack food delivery application built with React, Redux, and Node
 - **RESTful API** - Clean API endpoints
 - **Data Management** - Mock data for restaurants and menu items
 - **Scalable Architecture** - Ready for database integration
-
+- 
 ## 📁 Project Structure
 [FoodExpress]/
 ├── 📁 backend/ # Node.js Express Server
@@ -104,9 +108,8 @@ A modern, full-stack food delivery application built with React, Redux, and Node
 **Navigate to http://localhost:1234**
 
 
-### Pages & Components
-1. **Core Pages**
-
+📱 Pages & Components
+Core Pages
 Home (/) - Restaurant listings and search
 
 Restaurant (/restaurant/:id) - Menu and details
@@ -121,7 +124,7 @@ Account (/account) - User profile
 
 Offers (/offers) - Discounts and promotions
 
-2. **Key Components**
+Key Components
 Header - Navigation and search bar
 
 RestCard - Restaurant card component
