@@ -25,7 +25,7 @@ A modern, full-stack food delivery application built with React, Redux, and Node
 - **RESTful API** - Clean API endpoints
 - **Data Management** - Mock data for restaurants and menu items
 - **Scalable Architecture** - Ready for database integration
-- 
+
 ## 📁 Project Structure
 [FoodExpress]/
 ├── 📁 backend/ # Node.js Express Server
