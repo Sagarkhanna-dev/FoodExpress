@@ -81,7 +81,7 @@ A modern, full-stack food delivery application built with React, Redux, and Node
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/your-app-name.git
+   git clone https://github.com/Sagarkhanna-dev
    cd FoodExpress
 
 2. **Install Frontend Dependencies**
